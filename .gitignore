@@ -1,0 +1,4 @@
+SFML-TGUI/include/aurora
+SFML-TGUI/include/thor
+obj
+src/*.gch
