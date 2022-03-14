@@ -1,7 +1,7 @@
 .PHONY: pch
 
 INCLUDE = "-ISFML-TGUI/include -Isrc/"
-SOURCE = $(wildcard src/*.cpp)
+SOURCE = $(wildcard Core/*.cpp)
 # PATH = $(shell pwd)
 
 build:

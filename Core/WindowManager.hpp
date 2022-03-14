@@ -25,6 +25,7 @@ public:
 	void init();
 	void center();
 	void close();
+	void run();
 	void setCurrentScreen(Ref<BaseScreen> screen);
 
 	Vec2f relToWindow(const Vec2f& vec);

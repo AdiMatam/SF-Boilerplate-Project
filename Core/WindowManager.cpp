@@ -35,6 +35,22 @@ void WindowManager::setCurrentScreen(Ref<BaseScreen> screen) {
 	m_Current = screen;
 }
 
+void WindowManager::run() {
+	// temporary code
+	sf::Event ev;
+
+	while (m_Window.isOpen()) {
+		while (m_Window.pollEvent(ev)) {
+			if (ev.type == sf::Event::Closed) {
+				close();
+			}
+		}
+		m_Window.clear(sf::Color::Blue);
+		m_Window.display();
+	}
+}
+
+
 Vec2f WindowManager::relToWindow(const Vec2f& vec) {
 	return Vec2f(m_Window.getSize()) * vec;
 }
