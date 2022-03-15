@@ -1,4 +1,3 @@
-#include "Pch.hpp"
 #include "StartScreen.hpp"
 
 StartScreen::StartScreen() {

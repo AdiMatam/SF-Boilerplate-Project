@@ -1,6 +1,7 @@
 add_executable(
     Sandbox
     Main.cpp
+    StartScreen.cpp
 )
 
 target_compile_definitions(Sandbox PUBLIC SFML_STATIC TGUI_STATIC)

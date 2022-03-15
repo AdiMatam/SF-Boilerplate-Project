@@ -3,7 +3,7 @@
 #include "Pch.hpp"
 
 class BaseScreen {
-private:
+protected:
     BaseScreen() = default;
 public:
     virtual void onUpdate();

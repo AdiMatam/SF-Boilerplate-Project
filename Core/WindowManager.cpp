@@ -35,25 +35,35 @@ void WindowManager::add(const ScreenKey& key, ScreenLoader loader) {
 }
 
 void WindowManager::setScreen(const ScreenKey& key) {
-	m_CurrentlyRendered = key;
-	m_ScreenUpdated = true;
+	if (mapContains(m_Loaders, key)) {
+		m_CurrentlyRendered = key;
+		m_ScreenUpdated = true;
+	}
+	else {
+		std::cout << "ERROR - KEY '" << key << "'NOT FOUND!";
+	}
 }
 
 void WindowManager::run() {
 	sf::Event ev;
 
+	BaseScreen* toRender = nullptr;
+
 	while (m_Window.isOpen()) {
+		if (m_ScreenUpdated) {
+			toRender = m_Loaders[m_CurrentlyRendered]();
+			m_ScreenUpdated = false;
+		}
+		if (toRender == nullptr)
+			continue;
+			
 		while (m_Window.pollEvent(ev)) {
 			if (ev.type == sf::Event::Closed)
 				close();
 			else 
-				m_CurrentScreen->onEvent(ev);
+				toRender->onEvent(ev);
 		}
-		m_CurrentScreen->onUpdate();
-		if (m_ScreenUpdated) {
-			m_ScreenUpdated = false;
-			
-		}
+		toRender->onUpdate();
 	}
 }
 

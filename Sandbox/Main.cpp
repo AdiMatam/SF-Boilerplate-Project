@@ -1,7 +1,8 @@
 #include "Core/Core.hpp"
 #include "ScreenKeys.hpp"
+#include "StartScreen.hpp"
 
-#define SCREEN_GEN(className) [](){ return className(); }
+#define SCREEN_GEN(className) [](){ return new className(); }
 
 class StartScreen;
 
