@@ -51,6 +51,8 @@ void WindowManager::run() {
 
 	while (m_Window.isOpen()) {
 		if (m_ScreenUpdated) {
+			if (toRender != nullptr)
+				delete toRender;
 			toRender = m_Loaders[m_CurrentlyRendered]();
 			m_ScreenUpdated = false;
 		}
@@ -65,6 +67,8 @@ void WindowManager::run() {
 		}
 		toRender->onUpdate();
 	}
+	if (toRender != nullptr)
+		delete toRender;
 }
 
 

@@ -4,8 +4,6 @@
 
 #define SCREEN_GEN(className) [](){ return new className(); }
 
-class StartScreen;
-
 int main() {
     auto& renderer = WindowManager::Get();
     renderer.init();
