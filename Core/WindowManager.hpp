@@ -1,8 +1,9 @@
 #pragma once
 #include "Pch.hpp"
 #include "Animation.hpp"
+#include "Helpers.hpp"
+#include "BaseScreen.hpp"
 
-class BaseScreen;
 
 enum class _Impl_Direction {
 	X, Y
@@ -10,10 +11,15 @@ enum class _Impl_Direction {
 
 class WindowManager {
 private:
+	using ScreenLoader = std::function<BaseScreen*()>;
+private:
 	static constexpr float GUI_FACTOR = 1.12500f;
 	sf::RenderWindow m_Window;
 	tg::Gui m_Gui;
-	Ref<BaseScreen> m_Current;
+
+	std::unordered_map<ScreenKey, ScreenLoader> m_Loaders;
+	ScreenKey m_CurrentlyRendered;
+	bool m_ScreenUpdated = false;
 		
 	WindowManager() = default;
 	WindowManager(const WindowManager&) = delete;
@@ -25,8 +31,9 @@ public:
 	void init();
 	void center();
 	void close();
+	void add(const ScreenKey& key, ScreenLoader loader);
+	void setScreen(const ScreenKey& key);
 	void run();
-	void setCurrentScreen(Ref<BaseScreen> screen);
 
 	Vec2f relToWindow(const Vec2f& vec);
 	Vec2f relToView(const Vec2f& vec);

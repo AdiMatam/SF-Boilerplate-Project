@@ -1,5 +1,4 @@
 #include "Pch.hpp"
-#include "Helpers.hpp"
 #include "WindowManager.hpp"
 
 //static
@@ -31,22 +30,30 @@ void WindowManager::close() {
 	getWindow()->close();
 }
 
-void WindowManager::setCurrentScreen(Ref<BaseScreen> screen) {
-	m_Current = screen;
+void WindowManager::add(const ScreenKey& key, ScreenLoader loader) {
+	m_Loaders[key] = loader;
+}
+
+void WindowManager::setScreen(const ScreenKey& key) {
+	m_CurrentlyRendered = key;
+	m_ScreenUpdated = true;
 }
 
 void WindowManager::run() {
-	// temporary code
 	sf::Event ev;
 
 	while (m_Window.isOpen()) {
 		while (m_Window.pollEvent(ev)) {
-			if (ev.type == sf::Event::Closed) {
+			if (ev.type == sf::Event::Closed)
 				close();
-			}
+			else 
+				m_CurrentScreen->onEvent(ev);
 		}
-		m_Window.clear(sf::Color::Blue);
-		m_Window.display();
+		m_CurrentScreen->onUpdate();
+		if (m_ScreenUpdated) {
+			m_ScreenUpdated = false;
+			
+		}
 	}
 }
 

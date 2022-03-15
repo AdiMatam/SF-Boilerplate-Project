@@ -2,6 +2,8 @@
 
 #include "Pch.hpp"
 
+using ScreenKey = std::string;
+
 template <typename K, typename V>
 bool mapContains(const HashMap<K, V>& map, K item) {
     return (map.find(item) != map.end());
