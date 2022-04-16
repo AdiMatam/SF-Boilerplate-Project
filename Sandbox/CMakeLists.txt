@@ -13,7 +13,7 @@ target_include_directories(
 target_link_directories(Sandbox PUBLIC ${CMAKE_SOURCE_DIR}/SFML-TGUI/lib)
 target_link_libraries(
     Sandbox PUBLIC
-    Core 
+    SF-Core 
 )
 
 target_link_libraries(
