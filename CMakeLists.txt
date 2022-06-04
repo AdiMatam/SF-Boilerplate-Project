@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.19.2)
 
-project(ProjectileTest)
+project(Sandbox)
 
 add_subdirectory(SF-Core)
-add_subdirectory(ProjectileTest)
+add_subdirectory(Sandbox)
