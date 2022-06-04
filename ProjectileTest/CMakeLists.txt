@@ -1,5 +1,4 @@
-set(PROJECT_NOM Sandbox)
-
+set(PROJECT_NOM ProjectileTest)
 
 add_executable(
     ${PROJECT_NOM}
